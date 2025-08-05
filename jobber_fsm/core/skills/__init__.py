@@ -14,6 +14,7 @@ from jobber_fsm.core.skills.enter_text_using_selector import (
 from jobber_fsm.core.skills.get_dom_with_content_type import get_dom_with_content_type
 from jobber_fsm.core.skills.get_url import geturl
 from jobber_fsm.core.skills.get_user_input import get_user_input
+from jobber_fsm.core.skills.login_bahar import login_bahar, logout_bahar
 from jobber_fsm.core.skills.open_url import openurl
 from jobber_fsm.core.skills.press_key_combination import press_key_combination
 
@@ -30,6 +31,8 @@ __all__ = (
     get_dom_with_content_type,
     geturl,
     get_user_input,
+    login_bahar,
+    logout_bahar,
     openurl,
     press_key_combination,
 )

@@ -1,0 +1,35 @@
+Personal Info:
+First Name: [YOUR_FIRST_NAME]
+Last Name: [YOUR_LAST_NAME]
+Date of birth: 
+Pronouns: [YOUR_PRONOUNS]
+
+Email: [YOUR_EMAIL]
+Expected Salary: [YOUR_EXPECTED_SALARY]
+Occupation: [YOUR_OCCUPATION]
+Address: [YOUR_ADDRESS]
+Phone Number: [YOUR_PHONE]
+LinkedIn: [YOUR_LINKEDIN_URL]
+
+Bahar Website Credentials:
+Bahar URL: https://bahr.sa
+Bahar Username: [YOUR_BAHAR_USERNAME]
+Bahar Password: [YOUR_BAHAR_PASSWORD]
+
+Project Preferences:
+Minimum Project Budget: [MIN_BUDGET]
+Maximum Project Budget: [MAX_BUDGET]
+Preferred Project Categories: [YOUR_SKILLS_CATEGORIES]
+Offer Template: "Hi, I'm interested in your project. I have experience in [RELEVANT_SKILLS] and can deliver high-quality results within your timeline. My rate is [RATE] per hour. Looking forward to discussing this project with you!"
+
+Here are some of my preferences:
+Shopping Preferences: [YOUR_SHOPPING_SITE]
+Favorite news source: [YOUR_NEWS_SOURCE]
+Resume File to Upload Path: [PATH_TO_YOUR_RESUME]
+My best project: [DESCRIPTION_OF_YOUR_BEST_PROJECT]
+
+Skills and Experience:
+- [LIST YOUR SKILLS]
+- [YEARS OF EXPERIENCE]
+- [WORK AUTHORIZATION STATUS]
+- [ANY OTHER RELEVANT INFO]

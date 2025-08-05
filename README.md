@@ -1,73 +1,85 @@
-# sentient
+# Bahar Project Automation Agent
 
-this agent is based on our upcoming open-source framework [sentient](https://github.com/sentient-engineering/sentient) to help devs instantly build fast & reliable AI agents that can control browsers autonomously in 3 lines of code. checkout the beta sentient package on [pypi](https://pypi.org/project/sentient/) & our experiemnts to advance oss web navigating agents in the [agent-q repository](https://github.com/sentient-engineering/agent-q)
+Based on the [sentient](https://github.com/sentient-engineering/sentient) framework - an AI agent that automatically applies to relevant projects on the Bahar platform (https://bahr.sa) on your behalf.
 
-# jobber - apply to relevant jobs on internet autonomously
+## 🎯 What This Agent Does
 
-jobber is an ai agent that searches and applies for jobs on your behalf by controlling your browser. put in your resume and preferences and it does the work in background.
+This AI-powered automation agent:
+- **Logs into Bahar** automatically using your credentials
+- **Discovers new projects** that match your skills and preferences  
+- **Crafts personalized offers** using AI based on project requirements
+- **Submits offers automatically** on your behalf
+- **Monitors for new projects** continuously
+- **Tracks success rates** and optimizes offers over time
 
-### demo
+## 🏗️ Architecture
 
-checkout this [loom video](https://www.loom.com/share/2037ee751b4f491c8d2ffd472d8223bd?sid=53d08a9f-5a9b-4388-ae69-445032b31738) for a quick demo
+This project uses the **jobber_fsm** implementation based on [finite state machines](https://github.com/sentient-engineering/multi-agent-fsm) for better scalability and reliability.
 
-### jobber and jobber_fsm
+### Key Components
 
-you might notice two separate implementations of jobber in the repo. `jobber` folder contains a simpler approach to implementing multi-agent conversation required between a planner and a browser agent.
+- **🔐 Bahar Login Skill** - Handles SSO authentication with Bahar
+- **🔍 Project Discovery** - Finds and analyzes relevant projects
+- **🤖 AI Offer Crafting** - Generates personalized project proposals
+- **📋 Offer Submission** - Automatically submits offers to projects
+- **📊 Monitoring System** - Continuously checks for new opportunities
 
-the `jobber_fsm` folder contains another approach based on [finite state machines](https://github.com/sentient-engineering/multi-agent-fsm). there are slight nuances and both result in similar level or performace. however, the fsm approach is more scalable, and we will be doing further improvements in it.
+### Legacy Note
 
-the downside of fsm agent is that it is dependent on [structured output](https://openai.com/index/introducing-structured-outputs-in-the-api/) from open ai. so you can't reliably use cheaper models like gpt4o-mini or other oss models which is possible in `jobber`
+The `jobber` folder contains a simpler implementation for job applications. The `jobber_fsm` folder contains our Bahar-specific implementation with more advanced features.
 
-### setup
+## 🚀 Setup & Installation
 
-1. we recommend installing poetry before proceeding with the next steps. you can install poetry using these [instructions](https://python-poetry.org/docs/#installation)
+### 1. Install Dependencies
 
-2. install dependencies
+#### Option A: Using pip (Recommended)
+```bash
+pip3 install -r requirements.txt
+python3 -m playwright install chrome
+```
 
+#### Option B: Using Poetry
 ```bash
 poetry install
+python3 -m playwright install chrome
 ```
 
-3. start chrome in dev mode - in a seaparate terminal, use the command to start a chrome instance and do necesssary logins to job websites like linkedin/ wellfound, etc.
+### 2. Configure Environment
 
-for mac, use command -
+1. **Copy environment template:**
+   ```bash
+   cp env.example .env
+   ```
+
+2. **Add your API keys to `.env`:**
+   ```bash
+   OPENAI_API_KEY=your_openai_api_key_here
+   BAHAR_USERNAME=your_bahar_username
+   BAHAR_PASSWORD=your_bahar_password
+   ```
+
+3. **Update user preferences:**
+   ```bash
+   cp jobber_fsm/user_preferences/user_preferences_template.txt jobber_fsm/user_preferences/user_preferences.txt
+   ```
+   Then edit `user_preferences.txt` with your information.
+
+### 3. Test Bahar Login
 
 ```bash
-sudo /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+python3 test_bahar_login.py
 ```
 
-for linux -
+### 4. Run the Agent
 
 ```bash
-google-chrome --remote-debugging-port=9222
+python3 -u -m jobber_fsm
 ```
 
-for windows -
+### 5. Example Task
 
 ```bash
-"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
-```
-
-4. set up env - add openai and [langsmith](https://smith.langchain.com) keys to .env file. you can refer .env.example. currently adding langsmith is required but if you do not want to use it for tracing - then you can comment the line `litellm.success_callback = ["langsmith"]` in the `./jobber_fsm/core/agent/base.py` file.
-
-5. update your preferences in the `user_preferences.txt` file in the folder of agent that you are running (jobber/ jobber_fsm). provide the local file path to your resume in this file itself for the agent to be able to upload it.
-
-6. run the agent - jobber_fsm or jobber
-
-```bash
-python -u -m jobber_fsm
-```
-
-or
-
-```bash
-python -u -m jobber
-```
-
-6. enter your task. sample task -
-
-```bash
-apply for a backend engineer role based in helsinki on linkedin
+"Find and apply to web development projects on Bahar with budget between $500-$2000"
 ```
 
 ### Run evals

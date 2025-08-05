@@ -11,6 +11,16 @@ Address: Indiranagr, Bengaluru
 Phone Number: 
 LinkedIn - https://linkedin.com/in/nischalj10
 
+Bahar Website Credentials:
+Bahar URL: https://bahar.com
+Bahar Username: [YOUR_BAHAR_USERNAME]
+Bahar Password: [YOUR_BAHAR_PASSWORD]
+
+Project Preferences:
+Minimum Project Budget: 100
+Maximum Project Budget: 5000
+Preferred Project Categories: Web Development, Mobile Development, Data Analysis, AI/ML
+Offer Template: "Hi, I'm interested in your project. I have experience in [RELEVANT_SKILLS] and can deliver high-quality results within your timeline. My rate is [RATE] per hour. Looking forward to discussing this project with you!"
 
 Here are some of my preferences:
 Shopping Preferences: www.amazon.com
