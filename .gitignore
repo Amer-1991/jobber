@@ -1,5 +1,5 @@
-# Environment variables
-.env
+# Environment variables (commented out for private repo)
+# .env
 .env.local
 .env.*.local
 
@@ -84,9 +84,9 @@ manual_bahar_analysis_results.json
 playwright-state.json
 *.har
 
-# User preferences with credentials
-jobber_fsm/user_preferences/user_preferences.txt
-jobber/user_preferences/user_preferences.txt
+# User preferences with credentials (commented out for private repo)
+# jobber_fsm/user_preferences/user_preferences.txt
+# jobber/user_preferences/user_preferences.txt
 
 # Config files with potentially sensitive data
 jobber_fsm/config/
