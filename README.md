@@ -20,7 +20,7 @@ This project uses the **jobber_fsm** implementation based on [finite state machi
 
 - **🔐 Bahar Login Skill** - Handles SSO authentication with Bahar
 - **🔍 Project Discovery** - Finds and analyzes relevant projects
-- **🤖 AI Offer Crafting** - Generates personalized project proposals
+- **🤖 Arabic Offer Crafting** - Generates professional Arabic project proposals for Bahar platform
 - **📋 Offer Submission** - Automatically submits offers to projects
 - **📊 Monitoring System** - Continuously checks for new opportunities
 
@@ -51,26 +51,44 @@ python3 -m playwright install chrome
    cp env.example .env
    ```
 
-2. **Add your API keys to `.env`:**
+2. **Add your configuration to `.env`:**
    ```bash
+   # Arabic Offer Generation (Default)
+   # The system uses professional Arabic templates
+   
+   # Optional: OpenAI for additional features
    OPENAI_API_KEY=your_openai_api_key_here
+   
+   # Bahar credentials
    BAHAR_USERNAME=your_bahar_username
    BAHAR_PASSWORD=your_bahar_password
    ```
 
-3. **Update user preferences:**
+3. **Test Arabic Offer Generation:**
+   ```bash
+   python test_llama_ai.py
+   ```
+   This will test the Arabic offer generation system.
+
+4. **Update user preferences:**
    ```bash
    cp jobber_fsm/user_preferences/user_preferences_template.txt jobber_fsm/user_preferences/user_preferences.txt
    ```
    Then edit `user_preferences.txt` with your information.
 
-### 3. Test Bahar Login
+### 3. Test Arabic Offer Generation
+
+```bash
+python test_llama_ai.py
+```
+
+### 4. Test Bahar Login
 
 ```bash
 python3 test_bahar_login.py
 ```
 
-### 4. Run the Agent
+### 5. Run the Agent
 
 ```bash
 python3 -u -m jobber_fsm

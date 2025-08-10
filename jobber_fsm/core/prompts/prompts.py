@@ -324,4 +324,32 @@ class BrowserNavOutput(BaseModel):
 
     Begin the task now, following all the guidelines provided above. Remember to terminate the task appropriately when completed or if you encounter any issues.
 """,
+    "LOGIN_BAHAR_ESSO_PROMPT": """Performs login to the Bahar website using the ESSO API endpoint.
+    
+    This function uses the actual ESSO authentication API to authenticate with Bahar, then navigates to the dashboard.
+    
+    Args:
+        username: The username or email address for Bahar login
+        password: The password for Bahar login
+        bahar_url: The URL of the Bahar website (e.g., https://bahr.sa)
+        wait_time: Time to wait after login attempt to verify success (default: 3.0 seconds)
+    
+    Returns:
+        A detailed message indicating the success or failure of the login attempt
+    """,
+    "SEARCH_BAHAR_PROJECTS_PROMPT": """Search for projects on the Bahar platform with optional filters.
+    
+    This function navigates to the Bahar projects page, applies search filters, and extracts project information.
+    
+    Args:
+        search_query: Keywords to search for in projects (e.g., 'web development', 'mobile app')
+        min_budget: Minimum project budget filter (optional)
+        max_budget: Maximum project budget filter (optional)
+        category: Project category filter (e.g., 'Web Development', 'Mobile Development')
+        sort_by: Sort projects by 'publishDate_DESC', 'publishDate_ASC', 'budget_DESC', 'budget_ASC'
+        max_results: Maximum number of projects to return (default: 20)
+    
+    Returns:
+        JSON string containing list of found projects with their details including title, description, budget, URL, deadline, and required skills
+    """,
 }

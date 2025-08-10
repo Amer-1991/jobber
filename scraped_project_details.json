@@ -1,0 +1,15 @@
+{
+  "title": "مسوق ميداني",
+  "description": "خدمات الأعمال",
+  "status": {
+    "eligible": true,
+    "status": "open",
+    "reason": "",
+    "details": {
+      "closed": "مغلق",
+      "rejected": "مرفوض",
+      "in_progress": "قيد التنفيذ",
+      "open": "مفتوح"
+    }
+  }
+}

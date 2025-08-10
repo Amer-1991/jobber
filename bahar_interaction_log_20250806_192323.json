@@ -1,0 +1,314 @@
+{
+  "session_start": "2025-08-06T19:21:16.066272",
+  "session_end": "2025-08-06T19:23:23.880186",
+  "total_interactions": 35,
+  "interactions": [
+    {
+      "timestamp": "2025-08-06T19:21:22.394032",
+      "action": "browser_initialized",
+      "details": {
+        "url": "https://www.google.com/"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:21:43.933240",
+      "action": "login_attempt",
+      "details": {
+        "result": "Success: Successfully logged in to Bahar as amerbakhit@icloud.com using ESSO token authentication"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:21:43.935352",
+      "action": "authentication_check",
+      "details": {
+        "access_token_found": true,
+        "total_cookies": 33
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:21:48.095954",
+      "action": "navigate_to_projects",
+      "details": {
+        "url": "https://bahr.sa/projects?sortBy=publishDate_DESC"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:21:48.626187",
+      "action": "initial_project_extraction",
+      "details": {
+        "projects_found": 3,
+        "project_titles": [
+          " TRACKING - Google Analytics and SM pixels ",
+          "مسوقين لترويج خدمتي في تصميم حسابات LinkedIn",
+          "مسوق يجيب لي اعلانات"
+        ]
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.756980",
+      "action": "request",
+      "details": {
+        "url": "https://n.clarity.ms/collect",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.756766"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.757312",
+      "action": "request",
+      "details": {
+        "url": "https://tr.snapchat.com/p",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.757309"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.757423",
+      "action": "request",
+      "details": {
+        "url": "https://n.clarity.ms/collect",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.757421"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.757954",
+      "action": "request",
+      "details": {
+        "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-5M8HB3V6L1&gtm=45je5841v9191981417za200zb9189821033zd9189821033&_p=1754497305022&gcd=13l3l3l3l1l1&npa=0&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163&cid=1027446516.1754497287&ul=en-us&sr=2560x1080&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AEAAAAQ&_s=2&dl=https%3A%2F%2Fbahr.sa%2Fprojects%3FsortBy%3DpublishDate_DESC&dr=https%3A%2F%2Fbahr.sa%2Fprojects&sid=1754497287&sct=1&seg=1&dt=%D8%A7%D8%A8%D8%AF%D8%A3%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%83%20%D8%B9%D9%84%D9%89%20%D8%A8%D8%AD%D8%B1&en=page_view&tfd=7205",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.757952"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.759632",
+      "action": "request",
+      "details": {
+        "url": "https://sentry.910ths.sa/api/9/envelope/?sentry_version=7&sentry_key=dfd83584bd224cace94a01e28d136be2&sentry_client=sentry.javascript.nextjs%2F9.35.0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.759629"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.759791",
+      "action": "request",
+      "details": {
+        "url": "https://analytics.tiktok.com/api/v2/pixel/act",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.759790"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.760450",
+      "action": "request",
+      "details": {
+        "url": "https://sentry.910ths.sa/api/9/envelope/?sentry_version=7&sentry_key=dfd83584bd224cace94a01e28d136be2&sentry_client=sentry.javascript.nextjs%2F9.35.0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.760448"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.760721",
+      "action": "request",
+      "details": {
+        "url": "https://sentry.910ths.sa/api/9/envelope/?sentry_version=7&sentry_key=dfd83584bd224cace94a01e28d136be2&sentry_client=sentry.javascript.nextjs%2F9.35.0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.760718"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.760818",
+      "action": "page_navigation",
+      "details": {
+        "url": "https://bahr.sa/projects/recruitments/01987f02-014f-74b7-96ef-caa0578f2496",
+        "timestamp": "2025-08-06T19:23:23.760815"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.761546",
+      "action": "request",
+      "details": {
+        "url": "https://analytics.tiktok.com/api/v2/pixel",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.761544"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.761794",
+      "action": "request",
+      "details": {
+        "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-5M8HB3V6L1&gtm=45je5841v9191981417za200zb9189821033zd9189821033&_p=1754497305022&gcd=13l3l3l3l1l1&npa=0&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163&cid=1027446516.1754497287&ul=en-us&sr=2560x1080&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AEAAAAQ&_s=3&dl=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496&dr=https%3A%2F%2Fbahr.sa%2Fprojects%3FsortBy%3DpublishDate_DESC&sid=1754497287&sct=1&seg=1&dt=%D8%A7%D8%A8%D8%AF%D8%A3%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%83%20%D8%B9%D9%84%D9%89%20%D8%A8%D8%AD%D8%B1&en=page_view&_et=1145&tfd=23661",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.761792"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.762221",
+      "action": "page_navigation",
+      "details": {
+        "url": "https://bahr.sa/projects/recruitments/01987f02-014f-74b7-96ef-caa0578f2496",
+        "timestamp": "2025-08-06T19:23:23.762219"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.767069",
+      "action": "request",
+      "details": {
+        "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-VVVB0MS33R&gtm=45je5841v9192024852z89189821033za200zb9189821033zd9189821033&_p=1754497305022&gcd=13l3l3l3l1l1&npa=0&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163~105113531&cid=1027446516.1754497287&ul=en-us&sr=2560x1080&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&are=1&frm=0&pscdl=noapi&_s=1&sid=1754497333&sct=1&seg=0&dl=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496&dt=%D8%A7%D8%A8%D8%AF%D8%A3%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%83%20%D8%B9%D9%84%D9%89%20%D8%A8%D8%AD%D8%B1&en=Link_click&_fv=1&_ss=1&ep.Click_Text=%D8%A8%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D9%85%D9%86%D8%B4%D9%88%D8%B1%20%D9%81%D9%8A%3A%20%D8%A7%D9%84%D9%8A%D9%88%D9%85%20TRACKING%20-%20Google%20Analytics%20and%20SM%20pixels%20%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%20-%20%D8%A3%D8%AE%D8%B1%D9%89%20%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%3A%20%D8%B9%D9%86%20%D8%A8%D9%8F%D8%B9%D8%AF%20%D8%A7%D9%84%D9%88%D8%B8%D9%8A%D9%81%D8%A9%3A%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%20%D8%B1%D9%82%D9%85%D9%8A%20%D8%B9%D8%AF%D8%AF%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%82%D9%84%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D8%B7%D9%84%D9%88%D8%A8%3A%201%20%D8%A7%D9%84%D9%85%D9%8A%D8%B2%D8%A7%D9%86%D9%8A%D8%A9%20%D8%BA%D9%8A%D8%B1%20%D9%85%D8%AD%D8%AF%D8%AF&ep.Click_url=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496&tfd=29043",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.767066"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.768172",
+      "action": "request",
+      "details": {
+        "url": "https://sentry.910ths.sa/api/9/envelope/?sentry_version=7&sentry_key=dfd83584bd224cace94a01e28d136be2&sentry_client=sentry.javascript.nextjs%2F9.35.0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.768170"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.770296",
+      "action": "request",
+      "details": {
+        "url": "https://sentry.910ths.sa/api/9/envelope/?sentry_version=7&sentry_key=dfd83584bd224cace94a01e28d136be2&sentry_client=sentry.javascript.nextjs%2F9.35.0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.770292"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.770392",
+      "action": "request",
+      "details": {
+        "url": "https://sentry.910ths.sa/api/9/envelope/?sentry_version=7&sentry_key=dfd83584bd224cace94a01e28d136be2&sentry_client=sentry.javascript.nextjs%2F9.35.0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.770390"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.770430",
+      "action": "page_navigation",
+      "details": {
+        "url": "https://bahr.sa/projects/recruitments/01987f02-014f-74b7-96ef-caa0578f2496/proposals/submit",
+        "timestamp": "2025-08-06T19:23:23.770428"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.770643",
+      "action": "request",
+      "details": {
+        "url": "https://analytics.tiktok.com/api/v2/pixel",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.770642"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.770735",
+      "action": "request",
+      "details": {
+        "url": "https://analytics.tiktok.com/api/v2/pixel/act",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.770734"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.770943",
+      "action": "page_navigation",
+      "details": {
+        "url": "https://bahr.sa/projects/recruitments/01987f02-014f-74b7-96ef-caa0578f2496/proposals/submit",
+        "timestamp": "2025-08-06T19:23:23.770942"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.772561",
+      "action": "request",
+      "details": {
+        "url": "https://sentry.910ths.sa/api/9/envelope/?sentry_version=7&sentry_key=dfd83584bd224cace94a01e28d136be2&sentry_client=sentry.javascript.nextjs%2F9.35.0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.772559"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.772629",
+      "action": "request",
+      "details": {
+        "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-VVVB0MS33R&gtm=45je5841v9192024852z89189821033za200zb9189821033zd9189821033&_p=1754497305022&gcd=13l3l3l3l1l1&npa=0&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163~105113531&cid=1027446516.1754497287&ul=en-us&sr=2560x1080&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AAAAAAQ&_s=2&sid=1754497333&sct=1&seg=1&dl=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496&dt=%D8%A7%D8%A8%D8%AF%D8%A3%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%83%20%D8%B9%D9%84%D9%89%20%D8%A8%D8%AD%D8%B1&en=Link_click&ep.Click_Text=%D8%AA%D9%82%D8%AF%D9%8A%D9%85%20%D8%A7%D9%84%D8%B9%D8%B1%D8%B6&ep.Click_url=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496%2Fproposals%2Fsubmit&_et=24553&tfd=58602",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.772628"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.772788",
+      "action": "request",
+      "details": {
+        "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-5M8HB3V6L1&gtm=45je5841v9191981417za200zb9189821033zd9189821033&_p=1754497305022&gcd=13l3l3l3l1l1&npa=0&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163&cid=1027446516.1754497287&ul=en-us&sr=2560x1080&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AEAAAAQ&_s=4&dl=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496%2Fproposals%2Fsubmit&dr=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496&sid=1754497287&sct=1&seg=1&dt=%D8%A8%D8%AD%D8%B1%20%7C%20%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%20%D9%85%D8%B9%20%D8%A3%D9%81%D8%B6%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%82%D9%84%D9%8A%D9%86%20%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D9%8A%D9%86%20%D9%84%D8%AA%D9%84%D8%A8%D9%8A%D8%A9%20%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D8%AC%D8%A7%D8%AA%D9%83&en=page_view&_et=36622&tfd=60290",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.772786"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.772961",
+      "action": "page_navigation",
+      "details": {
+        "url": "https://bahr.sa/projects/recruitments/01987f02-014f-74b7-96ef-caa0578f2496/proposals/submit",
+        "timestamp": "2025-08-06T19:23:23.772960"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.772982",
+      "action": "page_navigation",
+      "details": {
+        "url": "https://bahr.sa/projects/recruitments/01987f02-014f-74b7-96ef-caa0578f2496/proposals/submit",
+        "timestamp": "2025-08-06T19:23:23.772981"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.773080",
+      "action": "request",
+      "details": {
+        "url": "https://google.com/pagead/form-data/11454162835?gtm=45je5841v9191981417za200zb9189821033zd9189821033xec&gcd=13l3l3l3l1l1&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163&npa=0&frm=0&pscdl=noapi&auid=1775283639.1754497286&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.773079"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.773689",
+      "action": "page_navigation",
+      "details": {
+        "url": "https://td.doubleclick.net/td/rul/11454162835?random=1754497365796&cv=11&fst=1754497365796&fmt=3&bg=ffffff&guid=ON&async=1&en=form_start&gtm=45je5841v9191981417za200zb9189821033zd9189821033xec&gcd=13l3l3l3l1l1&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163&u_w=2560&u_h=1080&url=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496%2Fproposals%2Fsubmit&hn=www.googleadservices.com&frm=0&tiba=%D8%A8%D8%AD%D8%B1%20%7C%20%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%20%D9%85%D8%B9%20%D8%A3%D9%81%D8%B6%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%82%D9%84%D9%8A%D9%86%20%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D9%8A%D9%86%20%D9%84%D8%AA%D9%84%D8%A8%D9%8A%D8%A9%20&npa=0&pscdl=noapi&auid=1775283639.1754497286&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&fledge=1&data=event%3Dform_start",
+        "timestamp": "2025-08-06T19:23:23.773688"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.774117",
+      "action": "request",
+      "details": {
+        "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-5M8HB3V6L1&gtm=45je5841v9191981417za200zb9189821033zd9189821033&_p=1754497305022&gcd=13l3l3l3l1l1&npa=0&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163&cid=1027446516.1754497287&ul=en-us&sr=2560x1080&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AEEAAAQ&_s=5&sid=1754497287&sct=1&seg=1&dl=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496%2Fproposals%2Fsubmit&dr=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496&dt=%D8%A8%D8%AD%D8%B1%20%7C%20%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%20%D9%85%D8%B9%20%D8%A3%D9%81%D8%B6%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%82%D9%84%D9%8A%D9%86%20%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D9%8A%D9%86%20%D9%84%D8%AA%D9%84%D8%A8%D9%8A%D8%A9%20%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D8%AC%D8%A7%D8%AA%D9%83&en=form_start&ep.form_id=&ep.form_name=&ep.form_destination=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496%2Fproposals%2Fsubmit&epn.form_length=8&ep.first_field_id=duration&ep.first_field_name=&ep.first_field_type=&epn.first_field_position=1&_et=6503&tfd=62570",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.774116"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.774292",
+      "action": "request",
+      "details": {
+        "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-5M8HB3V6L1&gtm=45je5841v9191981417za200zb9189821033zd9189821033&_p=1754497305022&gcd=13l3l3l3l1l1&npa=0&dma=0&tag_exp=101509157~103116026~103200004~103233427~104527906~104528501~104684208~104684211~104948813~105033763~105033765~105087538~105087540~105103161~105103163&cid=1027446516.1754497287&ul=en-us&sr=2560x1080&uaa=arm&uab=64&uafvl=Not%253BA%253DBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B139.0.7258.67%7CChromium%3B139.0.7258.67&uamb=0&uam=&uap=macOS&uapv=14.7.5&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AEAAAAQ&_s=6&sid=1754497287&sct=1&seg=1&dl=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496%2Fproposals%2Fsubmit&dr=https%3A%2F%2Fbahr.sa%2Fprojects%2Frecruitments%2F01987f02-014f-74b7-96ef-caa0578f2496&dt=%D8%A8%D8%AD%D8%B1%20%7C%20%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%20%D9%85%D8%B9%20%D8%A3%D9%81%D8%B6%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%82%D9%84%D9%8A%D9%86%20%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D9%8A%D9%86%20%D9%84%D8%AA%D9%84%D8%A8%D9%8A%D8%A9%20%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D8%AC%D8%A7%D8%AA%D9%83&en=scroll&epn.percent_scrolled=90&_et=768&tfd=67573",
+        "method": "POST",
+        "timestamp": "2025-08-06T19:23:23.774291"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T19:23:23.880166",
+      "action": "final_project_extraction",
+      "details": {
+        "projects_found": 2,
+        "project_titles": [
+          " TRACKING - Google Analytics and SM pixels ",
+          "مسوقين لترويج خدمتي في تصميم حسابات LinkedIn",
+          "مسوق يجيب لي اعلانات"
+        ]
+      }
+    }
+  ]
+}

@@ -10,6 +10,8 @@ from jobber_fsm.core.skills.open_url import openurl
 from jobber_fsm.core.skills.pdf_text_extractor import extract_text_from_pdf
 from jobber_fsm.core.skills.press_key_combination import press_key_combination
 from jobber_fsm.core.skills.upload_file import upload_file
+from jobber_fsm.core.skills.login_bahar_esso import login_bahar_esso
+from jobber_fsm.core.skills.search_bahar_projects import search_bahar_projects
 
 
 class BrowserNavAgent(BaseAgent):
@@ -38,4 +40,6 @@ class BrowserNavAgent(BaseAgent):
             (press_key_combination, LLM_PROMPTS["PRESS_KEY_COMBINATION_PROMPT"]),
             (extract_text_from_pdf, LLM_PROMPTS["EXTRACT_TEXT_FROM_PDF_PROMPT"]),
             (upload_file, LLM_PROMPTS["UPLOAD_FILE_PROMPT"]),
+            (login_bahar_esso, LLM_PROMPTS["LOGIN_BAHAR_ESSO_PROMPT"]),
+            (search_bahar_projects, LLM_PROMPTS["SEARCH_BAHAR_PROJECTS_PROMPT"]),
         ]

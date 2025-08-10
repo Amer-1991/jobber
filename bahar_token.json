@@ -1,0 +1,18 @@
+{
+  "token": "SID=08ca19256e914687991ae3cbff6855df",
+  "cookies": "SID=08ca19256e914687991ae3cbff6855df; expires=Tue, 07 Aug 2035 19:35:33 GMT; Max-Age=315532800; path=/; domain=.910ths.sa; samesite=lax",
+  "created_at": "2025-08-07T22:35:33.092885",
+  "expires_at": "2025-08-08T22:30:33.092860",
+  "username": "amerbakhit@icloud.com",
+  "response_data": {
+    "id": "c0786989-3305-4d36-90f4-1c67cc1ce690",
+    "email": "amerbakhit@icloud.com",
+    "token_type": "bearer",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiMTc5MGM0ZDA2YjM4ZWIzYjhkNzY0MTdlOWFkNWVkMjNhMWYzZmRkMmY1NmVmMWNjZjg4OWY2YjMyNjI5MThmYzA0YTZkZGIyZmM4NDM2NDciLCJpYXQiOjE3NTQ1OTUzMzMuNTYyNjMsIm5iZiI6MTc1NDU5NTMzMy41NjI2MzUsImV4cCI6MTc4NjEzMTMzMy41NTQwMDQsInN1YiI6ImMwNzg2OTg5LTMzMDUtNGQzNi05MGY0LTFjNjdjYzFjZTY5MCIsInNjb3BlcyI6W119.WsDhGHnHxuhh8-uN_nIRpL9aFv2BhNvyP9GidujqRthsfT8WRwQZC76JDEzRSgw11Ve0TuPXAXsoAoQeZIhDNdU9Tz4AJ36QGh7h98YPFCyEEgwbkGYzo_wYnjs6EJJtMFLPl4n8fkRuX6kpIYV1xkQpK5UBIaaCQc92IT7Xp26vjvOwHxzD9-nNKLqIcsxU7r05pZDa-hdZ4L18vwHpAZhqsJ-G-zi-OYEPHriwy-UrvssAgYR4a9ayTrfEIGl4Xh0czxOv8vIQzH6O1DZunBpImowbsJq1VwzZcDWRFiQYTn0cGd3WZ7MgSmR-4A1oWfUrjaxGcl-20IqmpiwnuyJSeXXQpJdmnNUr-Ksl1r-YAX6nE13K8Q3bg3wu9iBmLiGdi-9vMWblsao2K7XjtLiDKTwhBBTLPHmMhqKir20xQ36Gux8RtzBEBLlEWx-zMBRQBhTYS9LbFll2bDGTctMMIFL1JGul9LAsjmBe9BQvLSc9-L9CC4IruFWgVND9kBHVglExCtko7Se4CajXIcDgSYuY-D3744C2y7UwU7-qtcAogpp72ofgr5D_WfCV-JDWxv-SEE2zrMteRDpdT2xKpNUxnPuehejR5J8OcWwEqh5OZM686BYZjxS8RCkAtMVn7ciphX_L0UFVZQoA1HMInZKja-Ftu4oIHWG5iz0",
+    "token_id": "1790c4d06b38eb3b8d76417e9ad5ed23a1f3fdd2f56ef1ccf889f6b3262918fc04a6ddb2fc843647",
+    "sid": "08ca19256e914687991ae3cbff6855df",
+    "scope": null,
+    "expires_at": "2035-08-07 19:35:33",
+    "team": null
+  }
+}

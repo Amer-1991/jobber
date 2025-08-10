@@ -1,0 +1,11 @@
+{
+  "eligible": false,
+  "status": "open",
+  "reason": "Project is rejected",
+  "details": {
+    "closed": "مغلق",
+    "rejected": "مرفوض",
+    "in_progress": "قيد التنفيذ",
+    "open": "مفتوح"
+  }
+}
