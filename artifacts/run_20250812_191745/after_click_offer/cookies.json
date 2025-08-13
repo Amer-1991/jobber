@@ -1,0 +1,372 @@
+[
+  {
+    "name": "X-AB",
+    "value": "e60124b72cfb4ca3a676f2de1944c0fc",
+    "domain": "sc-static.net",
+    "path": "/scevent.min.js",
+    "expires": 1755101757.709076,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "SNID",
+    "value": "ABablncQyR5xBRsOt9DhudhiGk036HPl9vSftLIheux5NvythYTb5O1_hPwzIsjCax_7RoESGmRbRgX7e9Avmn-Dm2xEA1EKbg",
+    "domain": ".google.com",
+    "path": "/verify",
+    "expires": 1770826544.998513,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "AEC",
+    "value": "AVh_V2j9nn4YurlstrROow62Xprp1PXUq-YtxUuKNU-4-QUlLMh_2jBY7n0",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1770567345.616555,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "access_token",
+    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiNmU3MzAzZmE1NmQ2YWM3Y2E2ZjMyMjM4NzMwMGI0MjJlMzFmYzg0ZDUxNzU1NzVhYTc2ZDhlMzQ0MmI0NmI2MDk2MDdkOWNlZGM4NDUwOWEiLCJpYXQiOjE3NTUwMTE3MTcuMTgzODc2LCJuYmYiOjE3NTUwMTE3MTcuMTgzODc5LCJleHAiOjE3ODY1NDc3MTcuMTc1MTQ4LCJzdWIiOiJjMDc4Njk4OS0zMzA1LTRkMzYtOTBmNC0xYzY3Y2MxY2U2OTAiLCJzY29wZXMiOltdfQ.ySDikJN7PFLR20TjTevhSHv1gwxLaBV2DSWBsPX8fFpIg2835XCwFVdmH8kBquLFgTyZ3frRAaKZI22I4JyaZEFvgS_u7sfD2v2ZPlCQNXVBkCpK_iKnY481nzT8-NNvXmzi8ctoziPomaqpozN6eN9WF3wBXInFDo2ZuDCKAsg3UnWNIwES3meXY146xFr_H6y8DMGo4HjbAwoN41hwDtZUXF8_C7Vub3dyuM6Gb3xlt9ZzwePlSyflq-L-mJugIITC8Fc6C_ClNQhxb-vmGBZ1omkFsJ6QWkmuqGQrmNXLrGSoYeFLbSySzzKBGIDUuqJI8aY4h_wKTD1j_PDwUgMSxgM-7lfznsQkQuSccOUdEmOKEeBNGiRm2HPdLBjO3y3FGdYJorNNOpuVmEH47wiKP5JeMVCoshMISuR-nvimTNY0-QqqGB-KTPaooUFHkBYl2Ah0KyIRWnckqB-96kHLONJYuO5_iHa16o2w6g2fAfgyP-xMHuh5LwdBJWtbIb24y8k4qYb5yYMRUtNgCjp7N1Oeq9cy0Nws5EJ_gP-hr6e793XPcaRc-hoxkgFskhhIwIDnyU_U7-GM2viB5P3fpHGP4054k_USdgcnFxFxvH184ETNzfOkXR6DQMWM1RG8JhODJhDvPY3QLoCCJLzlUMqF4iDqdnf-eM0CZ-I",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "NID",
+    "value": "525=bJSCtjwptpaEVG8QW99lrY_tLvsu-huAObxaHYfkLaujxtsgJ7d35hGPnngY-PEBJ0neBeTSe-WnEdRFpS3xT25VeMohqgogqf1opylB5PoSIMkwcSh3mACydtTKNnTBkKDtSXEoaulF0nAHYMP4OCltYboIqx4QDCT-UhMJvkSxZ6DpG5XQSZ_cBxs6jgYbunWjGcygp_LJmyOB_gFdpjJiUeQk",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1770826545.26719,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "LS_CSRF_TOKEN",
+    "value": "5a5429ef-2c13-40f3-8777-d8038d5431d1",
+    "domain": "salesiq.zohopublic.sa",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "profile_type",
+    "value": "Freelancer",
+    "domain": "bahr.sa",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_gcl_au",
+    "value": "1.1.1180317469.1755015357",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1762791357,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "CLID",
+    "value": "2481af56d0c04d8b93031ccf5702a3ce.20250812.20260812",
+    "domain": "www.clarity.ms",
+    "path": "/",
+    "expires": 1786551357.387055,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.773843110.1755015357",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1789575467.538943,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_scid",
+    "value": "pX3qG5gKJy3-_ROg1Y8bcrqCpps0WZ-p",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1789202055,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ttp",
+    "value": "31C5kYSIkGUz3vOxlSKK4DqngD3",
+    "domain": ".tiktok.com",
+    "path": "/",
+    "expires": 1788711455.199509,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "_clck",
+    "value": "rp4tl7%7C2%7Cfye%7C0%7C2050",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1786551357,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_fbp",
+    "value": "fb.1.1755015357811.63765990314110252",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1762791466,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_tt_enable_cookie",
+    "value": "1",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1788711455,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ttp",
+    "value": "01K2FH29G7PNJM9TZ9BP2J4S2S_.tt.1",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1788711455,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "__cf_bm",
+    "value": "M6MOhLh5fWh_nH3nCaj1suZOYMsEaQ_2oVryxbp1i7I-1755015360-1.0.1.1-JBJxSB9YB82bALu.UsnKUc0OpKjsQYwnHd0c1TbufDtsK9Axn5rJzA_M_RPQLzZ8Fg6lvN0vV3wWma4NKD9Oul_UJlAs.MfpWV3z4e6S.Y0",
+    "domain": ".t.co",
+    "path": "/",
+    "expires": 1755017160.428161,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MUID",
+    "value": "3670B68DAC5A68DC20CDA0CBAD4269A0",
+    "domain": ".bing.com",
+    "path": "/",
+    "expires": 1788711361.444936,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MR",
+    "value": "0",
+    "domain": ".c.bing.com",
+    "path": "/",
+    "expires": 1755620161.444984,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "SRM_B",
+    "value": "3670B68DAC5A68DC20CDA0CBAD4269A0",
+    "domain": ".c.bing.com",
+    "path": "/",
+    "expires": 1788711361.44501,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "__cf_bm",
+    "value": "oHmdgehqCiIofwAmLEFNxRyHDxI0VCqxeQDgZMuN9s4-1755015360-1.0.1.1-MfdN6o.GpClLEgKYBdPg43p9RiTJ7tZ_a4RWSYDAK_By1lJqxL53fv9adLOhQrNRoYKkYehlMkAvlJydPJ5aOTwPHfueLvuxRHOWYsmJf6U",
+    "domain": ".twitter.com",
+    "path": "/",
+    "expires": 1755017160.465969,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "SM",
+    "value": "C",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MUID",
+    "value": "3670B68DAC5A68DC20CDA0CBAD4269A0",
+    "domain": ".clarity.ms",
+    "path": "/",
+    "expires": 1788711360.601496,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MR",
+    "value": "0",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": 1755620160.601533,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "ANONCHK",
+    "value": "0",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": 1755015960.601571,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "TapAd_TS",
+    "value": "1755015361357",
+    "domain": ".tapad.com",
+    "path": "/",
+    "expires": 1760199361.526494,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "TapAd_DID",
+    "value": "eaa98340-4bc5-4bc2-bca7-e4087df76f2b",
+    "domain": ".tapad.com",
+    "path": "/",
+    "expires": 1760199361.526543,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "TapAd_3WAY_SYNCS",
+    "value": "",
+    "domain": ".tapad.com",
+    "path": "/",
+    "expires": 1760199361.526563,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "sc_at",
+    "value": "v2|H4sIAAAAAAAAAE3Iyw0AIQgFwIpIePITu8GoVVj87tHbZFp4bzKL/ESRpgn14kUp2DAJnbkulAfCjP9x3If8ASCbZnNAAAAA",
+    "domain": ".snapchat.com",
+    "path": "/",
+    "expires": 1788711361.63386,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "_sctr",
+    "value": "1%7C1754946000000",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1789202059,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "NEXT_LOCALE",
+    "value": "ar",
+    "domain": "bahr.sa",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "IDE",
+    "value": "AHWqTUlX4tkYhCHX3A--DVc6TH6yCE3W5Pa7X7SnYe_Z-EEBV5nIvejgJouSdJSZ",
+    "domain": ".doubleclick.net",
+    "path": "/",
+    "expires": 1789575362.365642,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "_scid_r",
+    "value": "of3qG5gKJy3-_ROg1Y8bcrqCpps0WZ-pkHcotA",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1789202152,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "ttcsid",
+    "value": "1755015357960::xddLogq5MxZKXKYP1YId.1.1755015466943",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1788711466,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "ttcsid_CRGN1UBC77U00RLLQP0G",
+    "value": "1755015357960::h34LX1ADRD9ARMcnVx11.1.1755015467152",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1788711467,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ga_VVVB0MS33R",
+    "value": "GS2.1.s1755015467$o1$g0$t1755015467$j60$l0$h0",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1789575467.5388,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ga_5M8HB3V6L1",
+    "value": "GS2.1.s1755015357$o1$g1$t1755015468$j16$l0$h0",
+    "domain": ".bahr.sa",
+    "path": "/",
+    "expires": 1789575468.1509,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  }
+]
