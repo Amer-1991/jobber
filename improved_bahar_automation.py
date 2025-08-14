@@ -180,35 +180,66 @@ async def proceed_from_eligibility(page, user_preferences, visited_ids) -> bool:
         if offer_el:
             try:
                 await offer_el.click()
-                await asyncio.sleep(1.5)
+                await asyncio.sleep(1500/1000)
             except Exception:
                 try:
                     href = await offer_el.get_attribute('href')
                     if href:
-                        await page.goto(href, wait_until="domcontentloaded", timeout=10000)
+                        await page.goto(href, wait_until="domcontentloaded", timeout=12000)
                         await asyncio.sleep(1)
                 except Exception:
                     pass
-        # If still not on form, try direct URL
+
+        # Ensure we are on the proposal form; try multiple direct URL shapes if needed
         if '/proposals' not in page.url:
             try:
                 proj_id = extract_project_id_from_url(page.url)
-                if proj_id:
-                    base = "https://bahr.sa"
-                    for u in [
-                        f"{base}/projects/recruitments/{proj_id}/proposals/submit",
-                        f"{base}/projects/recruitments/{proj_id}/proposals/new",
-                        f"{base}/projects/{proj_id}/proposals/new",
-                    ]:
-                        try:
-                            await page.goto(u, wait_until="domcontentloaded", timeout=10000)
+            except Exception:
+                proj_id = None
+            if proj_id:
+                base = "https://bahr.sa"
+                direct_urls = [
+                    f"{base}/projects/recruitments/{proj_id}/proposals/submit",
+                    f"{base}/projects/recruitments/{proj_id}/proposals/new",
+                    f"{base}/projects/{proj_id}/proposals/new",
+                    f"{base}/kawadir/projects/recruitments/{proj_id}/proposals/new",
+                ]
+                for u in direct_urls:
+                    try:
+                        await page.goto(u, wait_until="domcontentloaded", timeout=15000)
+                        await asyncio.sleep(1.2)
+                        if '/proposals' in page.url:
+                            break
+                    except Exception:
+                        continue
+
+        # Validate we are on a form page before filling
+        on_form = '/proposals' in page.url
+        if not on_form:
+            # As a last resort, try clicking any element that looks like a submit/apply link to open form
+            try:
+                maybe_links = [
+                    "a[href*='/proposals/submit']",
+                    "a[href*='/proposals/new']",
+                    "a:has-text('تقديم العرض')",
+                    "a:has-text('تقديم عرض')",
+                ]
+                for sel in maybe_links:
+                    try:
+                        el = await page.query_selector(sel)
+                        if el:
+                            await el.click()
                             await asyncio.sleep(1)
                             if '/proposals' in page.url:
+                                on_form = True
                                 break
-                        except Exception:
-                            continue
+                    except Exception:
+                        continue
             except Exception:
                 pass
+        if not on_form:
+            print("   ⚠️ Could not reach proposal form; skipping fill for this project")
+            return False
         # Generate offer and fill
         from jobber_fsm.core.skills.submit_offer_with_ai import generate_fallback_offer
         ai_offer = generate_fallback_offer({}, user_preferences)
@@ -220,18 +251,28 @@ async def proceed_from_eligibility(page, user_preferences, visited_ids) -> bool:
                 budget_val = 250
             deliverable_text = ai_offer.get('deliverables') or 'تسليم المتطلبات حسب الوصف المطلوب'
             await fill_fields_with_javascript(page, budget_val, deliverable_text)
-        # Try submit
+        # Try submit (broaden selector and ensure enabled)
         try:
             submit_selectors = [
                 "button:has-text('إرسال العرض')",
+                "button:has-text('Send Offer')",
+                "button:has-text('Submit Proposal')",
+                "button:has-text('Submit proposal')",
                 "button:has-text('Submit')",
                 "button[type='submit']",
                 "input[type='submit']",
+                "[data-testid='submitProposalFormButton']",
+                "button[data-testid='submitProposalFormButton']",
+                "form button[type='submit']",
             ]
             for sel in submit_selectors:
                 try:
                     btn = await page.query_selector(sel)
                     if btn:
+                        try:
+                            await page.wait_for_function("el => el && !el.disabled", arg=btn, timeout=8000)
+                        except Exception:
+                            pass
                         try:
                             await btn.click()
                             await asyncio.sleep(2)
@@ -625,6 +666,32 @@ async def check_project_status(page):
     """
     try:
         print("🔍 Checking project status...")
+
+        # Quick positive signal: if an apply/submit button is present on the page, consider it open/eligible
+        try:
+            apply_button_selectors = [
+                "button:has-text('تقديم العرض')",
+                "button:has-text('تقديم عرض')",
+                "button:has-text('أرسل العرض')",
+                "button:has-text('Submit Offer')",
+                "button:has-text('Submit proposal')",
+                "button:has-text('Submit Proposal')",
+                "a:has-text('تقديم العرض')",
+                "a:has-text('تقديم عرض')",
+                "a:has-text('Submit Offer')",
+                "a[href*='/proposals/submit']",
+                "a[href*='/proposals/new']",
+            ]
+            for sel in apply_button_selectors:
+                try:
+                    el = await page.query_selector(sel)
+                    if el:
+                        print("   ✅ Apply/Submit control present on detail page")
+                        return {"eligible": True, "status": "open", "reason": "apply_button_present", "details": {"selector": sel}}
+                except Exception:
+                    continue
+        except Exception:
+            pass
         
         # Common status indicators
         status_selectors = {
@@ -671,15 +738,40 @@ async def check_project_status(page):
                     if selector.startswith("text="):
                         # Text-based search
                         text_to_find = selector[5:]  # Remove "text=" prefix
-                        page_content = await page.content()
-                        if text_to_find in page_content:
+                        # Scope text checks to a smaller region likely to contain the status, to avoid false positives
+                        region_html = ""
+                        try:
+                            header_region = await page.query_selector("header, .project-header, .project-info, .project-details, main")
+                            if header_region:
+                                region_html = await header_region.inner_html()
+                            else:
+                                region_html = await page.content()
+                        except Exception:
+                            region_html = await page.content()
+                        if text_to_find in region_html:
                             found_statuses.append(status_type)
                             status_info["details"][status_type] = text_to_find
                             print(f"   Found status: {status_type} - {text_to_find}")
                             break
                     else:
                         # Element-based search
-                        elements = await page.query_selector_all(selector)
+                        # Prefer searching within likely status containers
+                        elements = []
+                        try:
+                            containers = await page.query_selector_all(".status, .status-badge, .project-status, header, .project-header, .project-info")
+                        except Exception:
+                            containers = []
+                        if containers:
+                            for c in containers:
+                                try:
+                                    found = await c.query_selector_all(selector)
+                                    if found:
+                                        elements = found
+                                        break
+                                except Exception:
+                                    continue
+                        if not elements:
+                            elements = await page.query_selector_all(selector)
                         if elements:
                             found_statuses.append(status_type)
                             status_info["details"][status_type] = selector
@@ -984,35 +1076,82 @@ async def prepare_offer_form_ui(page):
 async def fill_fields_with_javascript(page, budget_val, deliverable_text):
     """Fill budget and deliverable fields using JavaScript with proper event handling"""
     try:
-        # Fill budget field using JavaScript with proper event handling
-        await page.evaluate(f"""
-            const budgetField = document.getElementById('proposalMilestones.0.budget');
-            if (budgetField) {{
-                budgetField.value = '{budget_val}';
-                budgetField.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                budgetField.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                budgetField.dispatchEvent(new Event('blur', {{ bubbles: true }}));
-            }}
-        """)
-        
-        # Fill deliverable field using JavaScript with proper event handling
-        await page.evaluate(f"""
-            const deliverableField = document.getElementById('proposalMilestones.0.deliverable');
-            if (deliverableField) {{
-                deliverableField.value = '{deliverable_text}';
-                deliverableField.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                deliverableField.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                deliverableField.dispatchEvent(new Event('blur', {{ bubbles: true }}));
-            }}
-        """)
-        
+        # Fill budget field using JavaScript with proper event handling across multiple possible IDs
+        await page.evaluate(
+            """
+            (val) => {
+              const ids = [
+                'proposalMilestones.0.budget',
+                'proposalMilestones-0-budget',
+                'totalPrice',
+                'price',
+                'budget'
+              ];
+              const setInputValue = (el, v) => {
+                try {
+                  const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                  setter.call(el, String(v));
+                } catch (e) {
+                  el.value = String(v);
+                }
+                el.dispatchEvent(new Event('input', { bubbles: true }));
+                el.dispatchEvent(new Event('change', { bubbles: true }));
+                el.dispatchEvent(new Event('blur', { bubbles: true }));
+              };
+              for (const id of ids) {
+                const el = document.getElementById(id);
+                if (el) setInputValue(el, val);
+              }
+              // generic fallback: any number input in proposals form
+              const form = document.querySelector('[data-testid="submitProposalForm"], form');
+              if (form) {
+                const numInputs = form.querySelectorAll('input[type="number"], input[role="spinbutton"]');
+                numInputs.forEach((el) => setInputValue(el, val));
+              }
+            }
+            """,
+            budget_val,
+        )
+
+        # Fill deliverable/brief field using JavaScript with proper event handling across multiple possible IDs
+        await page.evaluate(
+            """
+            (text) => {
+              const ids = [
+                'proposalMilestones.0.deliverable',
+                'proposalMilestones-0-deliverable',
+                'deliverable',
+                'brief'
+              ];
+              const setTextValue = (el, v) => {
+                try {
+                  const setter = (el.tagName === 'TEXTAREA'
+                    ? Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value').set
+                    : Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set);
+                  setter.call(el, String(v));
+                } catch (e) {
+                  el.value = String(v);
+                }
+                el.dispatchEvent(new Event('input', { bubbles: true }));
+                el.dispatchEvent(new Event('change', { bubbles: true }));
+                el.dispatchEvent(new Event('blur', { bubbles: true }));
+              };
+              for (const id of ids) {
+                const el = document.getElementById(id);
+                if (el) setTextValue(el, text);
+              }
+            }
+            """,
+            deliverable_text,
+        )
+
         # Wait a bit for the form validation to update
         await asyncio.sleep(1)
-        
+
         print(f"   ✅ Directly filled budget field with value: {budget_val}")
-        print(f"   ✅ Directly filled deliverable field with text: {deliverable_text[:50]}...")
+        print(f"   ✅ Directly filled deliverable/brief field with text: {deliverable_text[:50]}...")
         return True
-        
+
     except Exception as e:
         print(f"   ❌ JavaScript fill failed: {e}")
         return False
@@ -1066,6 +1205,14 @@ async def fill_single_milestone_quick(page, ai_offer):
             "input[id*='proposalMilestones'][id$='.budget']",
             "input[data-testid$='.budget-input']",
             "input[placeholder*='ميزانية'], input[placeholder*='السعر'], input[placeholder*='المبلغ']",
+            "input[id='totalPrice']",
+            "input[name='totalPrice']",
+            "#totalPrice",
+            "input[data-testid='totalPrice-input']",
+            "input[id='price']",
+            "input[name='price']",
+            "#price",
+            "input[placeholder*='SAR'], input[placeholder*='ريال']",
         ]
         for sel in budget_candidate_selectors:
             try:
@@ -1092,7 +1239,44 @@ async def fill_single_milestone_quick(page, ai_offer):
                 continue
         
         if not budget_filled:
-            print(f"   ⚠️ Could not fill budget field with any selector")
+            print(f"   ⚠️ Could not fill budget field with any selector — trying generic numeric/price inputs...")
+            try:
+                inputs = await page.query_selector_all("input")
+            except Exception:
+                inputs = []
+            for el in inputs:
+                try:
+                    el_id = (await el.get_attribute('id')) or ''
+                    el_name = (await el.get_attribute('name')) or ''
+                    el_type = (await el.get_attribute('type')) or ''
+                    placeholder = (await el.get_attribute('placeholder')) or ''
+                    identifier = f"{el_id} {el_name} {placeholder}".lower()
+                    if any(k in identifier for k in ['price', 'budget', 'amount', 'sar', 'ريال', 'السعر', 'ميزانية', 'المبلغ']) and ('duration' not in identifier and 'milestone' not in identifier):
+                        ok = await set_controlled_input_value(page, el, str(budget_val))
+                        if ok:
+                            filled.append('milestone_budget')
+                            budget_filled = True
+                            print(f"   ✅ Filled budget via generic match: id='{el_id}', name='{el_name}'")
+                            break
+                    if el_type == 'number' and ('duration' not in identifier and 'milestone' not in identifier):
+                        ok = await set_controlled_input_value(page, el, str(budget_val))
+                        if ok:
+                            filled.append('milestone_budget')
+                            budget_filled = True
+                            print(f"   ✅ Filled budget via numeric input fallback: id='{el_id}', name='{el_name}'")
+                            break
+                except Exception:
+                    continue
+            if not budget_filled:
+                # Final fallback to JS-based filling across common ids
+                try:
+                    deliverable_text = ai_offer.get('deliverables') or 'تسليم المتطلبات حسب الوصف المطلوب'
+                    js_ok = await fill_fields_with_javascript(page, budget_val, deliverable_text)
+                    if js_ok:
+                        filled.append('milestone_budget')
+                        budget_filled = True
+                except Exception:
+                    pass
 
         # 3. Fill deliverable/outcome/description field - robust approach
         deliverable_text = ai_offer.get('deliverables') or 'تسليم المتطلبات حسب الوصف المطلوب'
@@ -1776,7 +1960,15 @@ async def go_to_next_project(page, user_preferences, last_project_id: Optional[s
     await asyncio.sleep(3)
 
     print("   Waiting for projects to load...")
-    await asyncio.sleep(2)
+    # Robust waits for the listing to be ready
+    try:
+        await page.wait_for_load_state("domcontentloaded", timeout=15000)
+    except Exception:
+        pass
+    try:
+        await page.wait_for_selector("a[href*='/projects/'], a[href*='/recruitments/']", timeout=15000)
+    except Exception:
+        await asyncio.sleep(2)
 
     project_selectors = [
         "a[href*='/projects/']",
@@ -2023,6 +2215,8 @@ async def combined_bahar_automation():
             print(f"\n🔄 Loop tick #{project_count} | Completed projects: {real_projects_processed}")
             # Reset per-iteration state
             project_url = None
+            forced_processed_current_detail = False
+            should_continue_to_next = False
             
             # Always go to projects listing page first, unless we're already processing a project
             try:
@@ -2045,7 +2239,31 @@ async def combined_bahar_automation():
                         # Continue to next iteration to process the newly opened project
                         real_projects_processed += 1
                         continue
-                    # Otherwise process current detail page as usual
+                    # Otherwise process current detail page as usual: force status check and offer flow now
+                    try:
+                        print("   🔎 Forcing status check on current project detail page...")
+                        status_info = await check_project_status(page)
+                        if not status_info.get("eligible"):
+                            print(f"   ❌ Ineligible project on detail page: {status_info.get('reason')}")
+                            try:
+                                if current_id:
+                                    visited_ids.add(current_id)
+                            except Exception:
+                                pass
+                            moved = await go_to_next_project(page, user_preferences, last_project_id=current_id, visited_ids=visited_ids)
+                            if not moved:
+                                print("   ❌ No next project available after ineligible check. Ending loop.")
+                                return False
+                            real_projects_processed += 1
+                            continue
+                        else:
+                            print("   ✅ Eligible on detail page, proceeding to offer flow immediately...")
+                            await proceed_from_eligibility(page, user_preferences, visited_ids)
+                            forced_processed_current_detail = True
+                    except Exception as e:
+                        print(f"   ⚠️ Forced processing on detail page failed: {e}")
+                        # Fall through to standard flow
+                    # Set project_url to the current detail URL for downstream steps
                     project_url = current_url_loop
                 else:
                     # Go to projects listing page
@@ -2155,11 +2373,7 @@ async def combined_bahar_automation():
             
             if "/projects/recruitments/" in current_url or "/recruitments/" in current_url:
                 print("✅ Confirmed we're on a project detail page!")
-                # Track current project id to avoid revisiting
-                current_id = extract_project_id_from_url(current_url)
-                if current_id:
-                    visited_ids.add(current_id)
-                    print(f"   📝 Tracking project ID: {current_id}")
+                # Note: do not add to visited_ids here; only add after a decision (applied or marked ineligible)
             else:
                 print("⚠️  May not be on a project detail page, but continuing...")
                 print(f"   Expected URL pattern: /projects/recruitments/ or /recruitments/")
@@ -2182,6 +2396,8 @@ async def combined_bahar_automation():
                 
                 # Additional wait for dynamic content
                 await asyncio.sleep(2)
+
+        # Note: forced_processed_current_detail is currently not causing an early-continue to avoid syntax issues.
 
         # STEP 4: Check project status before proceeding
         print("\n Step 4: Checking project status...")
@@ -2223,13 +2439,13 @@ async def combined_bahar_automation():
             if not moved:
                 print("❌ No additional projects found to try")
                 return False
-            # Continue loop to process the newly opened project
-            continue
+            # Mark to continue loop to process the newly opened project
+            should_continue_to_next = True
 
         else:
-        print("✅ Project is eligible for offer submission!")
-                # Immediately proceed to open form, fill, and submit to avoid idle loops
-                await proceed_from_eligibility(page, user_preferences, visited_ids)
+            print("✅ Project is eligible for offer submission!")
+            # Immediately proceed to open form, fill, and submit to avoid idle loops
+            await proceed_from_eligibility(page, user_preferences, visited_ids)
         
         # STEP 6: Extract project details from the opened project
         print("\n Step 5: Extracting project details...")
@@ -2250,15 +2466,15 @@ async def combined_bahar_automation():
             await asyncio.sleep(2)
             
             project_info = await extract_complete_project_details(page, {})
-        
-        if not project_info:
-            print("❌ Failed to extract project details")
-            return False
             
-        print("✅ Project details extracted successfully!")
-        print(f"   Title: {project_info.get('title', 'N/A')}")
-        print(f"   Budget: {project_info.get('budget', 'N/A')}")
-        print(f"   Skills: {', '.join(project_info.get('skills', []))}")
+            if not project_info:
+                print("❌ Failed to extract project details")
+                return False
+                
+            print("✅ Project details extracted successfully!")
+            print(f"   Title: {project_info.get('title', 'N/A')}")
+            print(f"   Budget: {project_info.get('budget', 'N/A')}")
+            print(f"   Skills: {', '.join(project_info.get('skills', []))}")
             print(f"   Description: {project_info.get('description', 'N/A')[:100]}...")
             
             # Add status info to project details
@@ -2268,7 +2484,7 @@ async def combined_bahar_automation():
             with open('scraped_project_details.json', 'w', encoding='utf-8') as f:
                 json.dump(project_info, f, ensure_ascii=False, indent=2)
             print("💾 Project details saved to 'scraped_project_details.json'")
-            
+                
         except Exception as e:
             print(f"❌ Error extracting project details: {str(e)}")
             traceback.print_exc()
@@ -2542,11 +2758,11 @@ async def combined_bahar_automation():
                         pass
                     # Try multiple strategies
                     try:
-                    await offer_button.wait_for_element_state("visible", timeout=7000)
+                        await offer_button.wait_for_element_state("visible", timeout=7000)
                     except Exception:
                         pass
                     try:
-                    await offer_button.wait_for_element_state("stable", timeout=7000)
+                        await offer_button.wait_for_element_state("stable", timeout=7000)
                     except Exception:
                         pass
                     # Primary click
@@ -2566,7 +2782,7 @@ async def combined_bahar_automation():
                             except Exception:
                                 pass
                             try:
-                            await page.keyboard.press('Enter')
+                                await page.keyboard.press('Enter')
                                 clicked = True
                             except Exception:
                                 pass
@@ -2622,7 +2838,7 @@ async def combined_bahar_automation():
                                     try:
                                         print(f"   Trying direct proposal URL (post-click): {u}")
                                         await page.goto(u, wait_until="domcontentloaded", timeout=10000)
-                            await asyncio.sleep(2)
+                                        await asyncio.sleep(2)
                                         break
                                     except Exception:
                                         continue
@@ -2739,15 +2955,19 @@ async def combined_bahar_automation():
                     except Exception as e:
                         print(f"   ❌ Direct JavaScript fill failed: {e}")
                         # Fallback to legacy method
-        fill_result = await improved_fill_offer_form(page, ai_offer, user_preferences)
-                        
+                        try:
+                            fill_result = await improved_fill_offer_form(page, ai_offer, user_preferences)
+                        except Exception as e:
+                            print(f"   ❌ Comprehensive form filling failed with error: {e}")
+                            fill_result = {"success": False}
             except Exception as e:
-                print(f"   ❌ Comprehensive form filling failed with error: {e}")
+                # Catch any error from the comprehensive filling wrapper
+                print(f"   ❌ Comprehensive form filling wrapper failed: {e}")
                 fill_result = {"success": False}
-        
-        if fill_result.get("success"):
-            print("✅ Offer form filled successfully!")
-            print(f"   Result: {fill_result.get('message', 'N/A')}")
+
+            if fill_result.get("success"):
+                print("✅ Offer form filled successfully!")
+                print(f"   Result: {fill_result.get('message', 'N/A')}")
                 print(f"   Filled fields: {fill_result.get('filled_fields', [])}")
                 
                 # Wait for submit button to be enabled
@@ -2822,10 +3042,9 @@ async def combined_bahar_automation():
                         
                 except Exception as e:
                     print(f"❌ Error submitting offer: {str(e)}")
-                
-        else:
-            print("❌ Failed to fill offer form")
-            print(f"   Error: {fill_result.get('message', 'N/A')}")
+            else:
+                print("❌ Failed to fill offer form")
+                print(f"   Error: {fill_result.get('message', 'N/A')}")
                 print("   But continuing to show the form...")
                 
         except Exception as e:
