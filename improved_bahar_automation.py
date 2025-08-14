@@ -1943,34 +1943,40 @@ async def go_to_next_project(page, user_preferences, last_project_id: Optional[s
     # Also add already-applied projects from disk to skip list
     visited_ids |= load_applied_project_ids()
 
-    print("   Going back to projects page...")
-    try:
-        await page.goto("https://bahr.sa/", wait_until="domcontentloaded", timeout=20000)
-        await asyncio.sleep(1.5)
-        await page.goto("https://bahr.sa/projects", wait_until="domcontentloaded", timeout=20000)
-    except Exception as e:
-        print(f"   ⚠️ Direct projects navigation failed: {e}. Retrying slow path...")
+    # Try multiple refresh attempts before giving up
+    max_refresh_attempts = 3
+    for attempt in range(1, max_refresh_attempts + 1):
+        print("   Going back to projects page...")
         try:
-            await page.goto("https://bahr.sa/dashboard", wait_until="domcontentloaded", timeout=25000)
+            await page.goto("https://bahr.sa/", wait_until="domcontentloaded", timeout=20000)
+            await asyncio.sleep(1.5)
+            await page.goto("https://bahr.sa/projects", wait_until="domcontentloaded", timeout=20000)
+        except Exception as e:
+            print(f"   ⚠️ Direct projects navigation failed (attempt {attempt}/{max_refresh_attempts}): {e}. Retrying slow path...")
+            try:
+                await page.goto("https://bahr.sa/dashboard", wait_until="domcontentloaded", timeout=25000)
+                await asyncio.sleep(2)
+                await page.goto("https://bahr.sa/projects", wait_until="domcontentloaded", timeout=25000)
+            except Exception as e2:
+                print(f"   ❌ Slow path also failed (attempt {attempt}/{max_refresh_attempts}): {e2}")
+                if attempt < max_refresh_attempts:
+                    await asyncio.sleep(2)
+                    continue
+                return False
+        await asyncio.sleep(3)
+
+        print("   Waiting for projects to load...")
+        # Robust waits for the listing to be ready
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=15000)
+        except Exception:
+            pass
+        try:
+            await page.wait_for_selector("a[href*='/projects/'], a[href*='/recruitments/']", timeout=15000)
+        except Exception:
             await asyncio.sleep(2)
-            await page.goto("https://bahr.sa/projects", wait_until="domcontentloaded", timeout=25000)
-        except Exception as e2:
-            print(f"   ❌ Slow path also failed: {e2}")
-            return False
-    await asyncio.sleep(3)
 
-    print("   Waiting for projects to load...")
-    # Robust waits for the listing to be ready
-    try:
-        await page.wait_for_load_state("domcontentloaded", timeout=15000)
-    except Exception:
-        pass
-    try:
-        await page.wait_for_selector("a[href*='/projects/'], a[href*='/recruitments/']", timeout=15000)
-    except Exception:
-        await asyncio.sleep(2)
-
-    project_selectors = [
+        project_selectors = [
         "a[href*='/projects/']",
         "a[href*='/recruitments/']",
         ".project-card a",
@@ -1984,48 +1990,112 @@ async def go_to_next_project(page, user_preferences, last_project_id: Optional[s
         "[data-testid='project-card']",
         ".card[href*='/projects/']",
         ".card[href*='/recruitments/']"
-    ]
+        ]
 
-    for selector in project_selectors:
-        try:
-            links = await page.query_selector_all(selector)
-            if not links:
-                continue
-            print(f"   Found {len(links)} links with selector: {selector}")
-            for i, link in enumerate(links):
+        # Paginate through listing pages and look for eligible projects
+        max_pages_to_paginate = 5
+        pages_scanned = 0
+        while True:
+            found_any = False
+            for selector in project_selectors:
                 try:
-                    href = await link.get_attribute('href')
-                    link_text = await link.text_content()
-                    print(f"   🔍 Checking link {i+1}: href='{href}', text='{(link_text or '')[:30]}'")
-                    if not href or '/proposals/' in href or '/my-proposals' in href:
+                    links = await page.query_selector_all(selector)
+                    if not links:
                         continue
-                    if ('/projects/' in href or '/recruitments/' in href) and len(href.split('/')) > 3:
-                        if href in ('/projects', '/recruitments'):
-                            continue
-                        # Extract project id and skip if visited or already applied
-                        candidate_id = extract_project_id_from_url(href)
-                        if candidate_id and candidate_id in visited_ids:
-                            continue
-                        print(f"   ✅ Found next project: {href}")
-                        if not href.startswith('http'):
-                            href = f"https://bahr.sa{href}"
-                        print(f"   🎯 Navigating to next project: {href}")
-                        await page.goto(href, wait_until="domcontentloaded", timeout=8000)
-                        await asyncio.sleep(3)
-                        print("   🔍 Checking if project is closed...")
-                        status_info = await check_project_status(page)
-                        if status_info.get("eligible"):
-                            print("   ✅ Next project is eligible - continuing automation...")
-                            # Return True to continue the main automation loop
-                            return True
-                        else:
-                            print(f"   ❌ Next project is not eligible: {status_info.get('reason')}")
-                            print("   🔄 Project not eligible, continuing to search for next project...")
-                            # Don't return here - continue searching for more projects
+                    print(f"   Found {len(links)} links with selector: {selector}")
+                    for i, link in enumerate(links):
+                        try:
+                            href = await link.get_attribute('href')
+                            link_text = await link.text_content()
+                            print(f"   🔍 Checking link {i+1}: href='{href}', text='{(link_text or '')[:30]}'")
+                            if not href or '/proposals/' in href or '/my-proposals' in href:
+                                continue
+                            if ('/projects/' in href or '/recruitments/' in href) and len(href.split('/')) > 3:
+                                if href in ('/projects', '/recruitments'):
+                                    continue
+                                # Extract project id and skip if visited or already applied
+                                candidate_id = extract_project_id_from_url(href)
+                                if candidate_id and candidate_id in visited_ids:
+                                    continue
+                                found_any = True
+                                print(f"   ✅ Found next project: {href}")
+                                if not href.startswith('http'):
+                                    href = f"https://bahr.sa{href}"
+                                print(f"   🎯 Navigating to next project: {href}")
+                                await page.goto(href, wait_until="domcontentloaded", timeout=8000)
+                                await asyncio.sleep(3)
+                                print("   🔍 Checking if project is closed...")
+                                status_info = await check_project_status(page)
+                                if status_info.get("eligible"):
+                                    print("   ✅ Next project is eligible - continuing automation...")
+                                    return True
+                                else:
+                                    print(f"   ❌ Next project is not eligible: {status_info.get('reason')}")
+                                    print("   🔄 Project not eligible, continuing to search for next project...")
+                                    continue
+                        except Exception:
                             continue
                 except Exception:
                     continue
-        except Exception:
+
+            # If none eligible on this page, try to go to the next listing page
+            if pages_scanned >= max_pages_to_paginate:
+                break
+            try:
+                next_selectors = [
+                    "a[rel='next']",
+                    "button[rel='next']",
+                    "a:has-text('التالي')",
+                    "button:has-text('التالي')",
+                    "a:has-text('Next')",
+                    "button:has-text('Next')",
+                    "[aria-label*='التالي']",
+                    "[aria-label*='Next']",
+                    ".pagination a[rel='next']",
+                    "li.next a",
+                    "li.pagination-next a",
+                ]
+                next_el = None
+                for nsel in next_selectors:
+                    try:
+                        el = await page.query_selector(nsel)
+                        if el:
+                            next_el = el
+                            break
+                    except Exception:
+                        continue
+                if next_el:
+                    print("   📄 Moving to next listing page...")
+                    try:
+                        await next_el.click()
+                    except Exception:
+                        try:
+                            href = await next_el.get_attribute('href')
+                            if href:
+                                await page.goto(href, wait_until='domcontentloaded', timeout=15000)
+                        except Exception:
+                            pass
+                    try:
+                        await page.wait_for_load_state('domcontentloaded', timeout=15000)
+                    except Exception:
+                        pass
+                    await asyncio.sleep(1.5)
+                    pages_scanned += 1
+                    # Continue while-loop to scan the new page
+                    continue
+            except Exception:
+                pass
+            # No next page control found; break pagination loop
+            break
+
+        # If we saw projects but none eligible across pages, refresh attempts loop
+        if found_any:
+            continue
+
+        # No projects found on this attempt; refresh and try again unless we've exhausted attempts
+        print("   ❌ No projects found on this attempt; refreshing listing...")
+        if attempt < max_refresh_attempts:
+            await asyncio.sleep(2)
             continue
 
     print("   ❌ No more projects found")
